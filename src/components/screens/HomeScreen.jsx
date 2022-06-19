@@ -2,19 +2,25 @@ import React from 'react'
 import MenuItem from '../molecules/MenuItem'
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
-const HomeScreen = ({ navigation }) => {
-    // render() {
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => { navigation.navigate('Figures') }} style={styles.menuItem}>
-                <MenuItem text="Figury" color="powderblue" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuItem}>
-                <MenuItem text="moje konto" color="red" />
-            </TouchableOpacity>
-        </View>
-    )
-    // }
+class HomeScreen extends React.Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('Figures') }} style={styles.menuItem}>
+                    <MenuItem text="Profil" color="powderblue" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('Figures') }} style={styles.menuItem}>
+                    <MenuItem text="Kalendarz" color="blue" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { this.props.navigation.navigate('Figures') }} style={styles.menuItem}>
+                    <MenuItem text="Figury" color="pink" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.menuItem} style={styles.menuItem}>
+                    <MenuItem text="Ustawienia" color="red" />
+                </TouchableOpacity>
+            </View>
+        )
+    }
 }
 
 export default HomeScreen

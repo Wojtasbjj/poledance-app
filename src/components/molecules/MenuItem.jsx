@@ -15,6 +15,7 @@ export default MenuItem
 
 const styles = StyleSheet.create({
     menuItem: {
+        // height: 300,
         flex: 1,
         margin: 10,
         justifyContent: 'center',
