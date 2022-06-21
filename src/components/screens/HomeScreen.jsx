@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
                 <TouchableOpacity onPress={() => { this.props.navigation.navigate('Figures') }} style={styles.menuItem}>
                     <MenuItem text="Figury" color="pink" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuItem} style={styles.menuItem}>
+                <TouchableOpacity style={styles.menuItem}>
                     <MenuItem text="Ustawienia" color="red" />
                 </TouchableOpacity>
             </View>
