@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/core'
-import MenuItem from '../molecules/MenuItem'
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 import firebase from '../../../firebase'
-
+import BaseButton from '../atoms/BaseButton'
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -30,18 +29,25 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.menuItem}>
-                <MenuItem text="Profil" color="powderblue" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuItem}>
-                <MenuItem text="Kalendarz" color="blue" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleChangeScreen('Figures')} style={styles.menuItem}>
-                <MenuItem text="Figury" color="pink" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleLogOut} style={styles.menuItem}>
-                <MenuItem text="Wyloguj" color="red" />
-            </TouchableOpacity>
+            <View style={styles.profileContainer}></View>
+            <View style={styles.menuContainer}>
+                <View style={styles.buttonWrapper}>
+                    <BaseButton onPress={() => handleChangeScreen('Profile')} placeholder="Mój Profil" />
+                </View>
+                <View style={styles.buttonWrapper}>
+                    <BaseButton onPress={() => handleChangeScreen('Figures')} placeholder="Figury" />
+                </View>
+                <View style={styles.buttonWrapper}>
+                    <BaseButton onPress={() => handleChangeScreen('Calendar')} placeholder="Kalendarz" />
+                </View>
+                <View style={styles.buttonWrapper}>
+                    <BaseButton onPress={() => handleChangeScreen('Goals')} placeholder="Moje cele" />
+                </View>
+                {/* TODO: svg zamiast napisu logout */}
+                <TouchableOpacity onPress={handleLogOut}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -52,7 +58,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    menuItem: {
-        flex: 1
+    profileContainer: {
+        flex: 1,
+        borderBottomColor: '#D1D1D1',
+        borderBottomWidth: 1,
+        marginBottom: '10px'
+    },
+    menuContainer: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    buttonWrapper: {
+        width: '80%',
+        marginBottom: 30
     }
 });

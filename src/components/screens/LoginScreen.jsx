@@ -77,6 +77,7 @@ const LoginScreen = () => {
                     <Text style={[styles.descriptionText, styles.descriptionTextPurple]}>Pole Dancerek</Text>
                 </View>
                 <View style={styles.inputContainer}>
+                    {/* TODO: w Base input dodać możliwość dodawania ikonek i dodać ikonki z Figmy */}
                     <BaseInput value={email} onChangeText={text => setEmail(text)} placeholder="E-mail" />
                     <BaseInput value={password} onChangeText={text => setPassword(text)} placeholder="Hasło" secureTextEntry={true} />
                 </View>
