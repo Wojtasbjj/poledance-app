@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     input: {
-        backgroundColor: 'white',
+        border: '1px solid #D1D1D1',
         paddingHorizontal: 15,
         paddingVertical: 15,
-        borderRadius: 10,
+        borderRadius: 5,
         marginTop: 5
     },
 });

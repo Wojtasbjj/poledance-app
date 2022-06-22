@@ -72,9 +72,13 @@ const LoginScreen = () => {
     return (
         <KeyboardAvoidingView style={styles.container} behavior="padding">
             {loader ? <Progress.Circle size={50} indeterminate={true} /> : <View style={styles.formWrapper}>
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.descriptionText}>Dołącz do społeczności</Text>
+                    <Text style={[styles.descriptionText, styles.descriptionTextPurple]}>Pole Dancerek</Text>
+                </View>
                 <View style={styles.inputContainer}>
-                    <BaseInput value={email} onChangeText={text => setEmail(text)} placeholder="email" />
-                    <BaseInput value={password} onChangeText={text => setPassword(text)} placeholder="password" secureTextEntry={true} />
+                    <BaseInput value={email} onChangeText={text => setEmail(text)} placeholder="E-mail" />
+                    <BaseInput value={password} onChangeText={text => setPassword(text)} placeholder="Hasło" secureTextEntry={true} />
                 </View>
                 <View style={styles.buttonContainer}>
                     <BaseButton disabled={loader} onPress={handleSignIn} placeholder="ZALOGUJ SIĘ" />
@@ -93,6 +97,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative'
+    },
+    descriptionContainer: {
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    descriptionText: {
+        color: '#c95ea6',
+        fontSize: '24px',
+        fontWeight: 700
+    },
+    descriptionTextPurple: {
+        color: '#9247b1'
     },
     formWrapper: {
         justifyContent: 'center',
