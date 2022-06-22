@@ -1,18 +1,15 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native';
 
-class HomeScreen extends React.Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>Figures SCREEN</Text>
-                <Button onPress={() => { this.props.navigation.navigate('Home') }} title={"BACK!"}></Button>
-            </View>
-        )
-    }
+const FiguresScreen = () => {
+    return (
+        <View style={styles.container}>
+            <Text>Figures SCREEN</Text>
+        </View>
+    )
 }
 
-export default HomeScreen
+export default FiguresScreen
 
 const styles = StyleSheet.create({
     container: {

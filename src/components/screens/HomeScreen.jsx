@@ -30,13 +30,13 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => handleChangeScreen('Figures')} style={styles.menuItem}>
+            <TouchableOpacity style={styles.menuItem}>
                 <MenuItem text="Profil" color="powderblue" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.menuItem}>
                 <MenuItem text="Kalendarz" color="blue" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.menuItem}>
+            <TouchableOpacity onPress={() => handleChangeScreen('Figures')} style={styles.menuItem}>
                 <MenuItem text="Figury" color="pink" />
             </TouchableOpacity>
             <TouchableOpacity onPress={handleLogOut} style={styles.menuItem}>
