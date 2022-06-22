@@ -4,6 +4,7 @@ import { StyleSheet, KeyboardAvoidingView, Text, View, TextInput, TouchableOpaci
 import firebase from '../../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import * as Progress from 'react-native-progress';
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 
 const LoginScreen = () => {
@@ -30,20 +31,40 @@ const LoginScreen = () => {
 
     const handleSignUp = () => {
         setLoader(true)
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-            setLoader(false)
-            setEmail('')
-            setPassword('')
-        })
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                setLoader(false)
+                setEmail('')
+                setPassword('')
+            })
+            .catch(error => {
+                setLoader(false)
+                showMessage({
+                    message: error.code,
+                    description: error.message,
+                    type: "danger",
+                    duration: 5000
+                });
+            })
     }
 
     const handleSignIn = () => {
         setLoader(true)
-        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-            setLoader(false)
-            setEmail('')
-            setPassword('')
-        })
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
+                setLoader(false)
+                setEmail('')
+                setPassword('')
+            })
+            .catch(error => {
+                setLoader(false)
+                showMessage({
+                    message: error.code,
+                    description: error.message,
+                    type: "danger",
+                    duration: 5000
+                });
+            })
     }
 
     return (
