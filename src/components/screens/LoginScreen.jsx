@@ -2,70 +2,81 @@ import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, KeyboardAvoidingView, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import firebase from '../../../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import * as Progress from 'react-native-progress';
 
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [user, loading, error] = useAuthState(firebase.auth())
+    const [loader, setLoader] = useState(false)
 
     const navigation = useNavigation()
 
     useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                navigation.navigate("Home")
-            }
-        })
+        if (user) {
+            navigation.navigate("Home")
+        }
+    }, [user])
 
-        return unsubscribe
-    }, [])
+    useEffect(() => {
+        if (loading) {
+            setLoader(true)
+        } else {
+            setLoader(false)
+        }
+    }, [loading])
 
     const handleSignUp = () => {
-        firebase.auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((userCredentials) => {
-                const user = userCredentials.user
-                console.log(user.email)
-            })
-            .catch(error => alert(error.message))
+        setLoader(true)
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+            setLoader(false)
+            setEmail('')
+            setPassword('')
+        })
     }
 
     const handleSignIn = () => {
-        firebase.auth()
-            .signInWithEmailAndPassword(email, password)
-            .then((userCredentials) => {
-                const user = userCredentials.user
-                console.log(user)
-            })
+        setLoader(true)
+        firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+            setLoader(false)
+            setEmail('')
+            setPassword('')
+        })
     }
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior="padding">
-            <View style={styles.inputContainer}>
-                <TextInput placeholder='email'
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                    style={styles.input}
-                />
-                <TextInput placeholder='password'
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
-            </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={handleSignIn}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={handleSignUp}
-                    style={[styles.button, styles.buttonOutLine]}>
-                    <Text style={styles.buttonOutLineText}>Register</Text>
-                </TouchableOpacity>
-            </View>
+            {loader ? <Progress.Circle size={50} indeterminate={true} /> : <View style={styles.formWrapper}>
+                <View style={styles.inputContainer}>
+                    <TextInput placeholder='email'
+                        value={email}
+                        onChangeText={text => setEmail(text)}
+                        style={styles.input}
+                    />
+                    <TextInput placeholder='password'
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                        style={styles.input}
+                        secureTextEntry
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        disabled={loader}
+                        onPress={handleSignIn}
+                        style={styles.button}>
+                        <Text style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        disabled={loader}
+                        onPress={handleSignUp}
+                        style={[styles.button, styles.buttonOutLine]}>
+                        <Text style={styles.buttonOutLineText}>Register</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>}
         </KeyboardAvoidingView>
     )
 }
@@ -76,7 +87,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative'
+    },
+    formWrapper: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%'
     },
     inputContainer: {
         width: '80%'
