@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/core'
 import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 import firebase from '../../../firebase'
 import BaseButton from '../atoms/BaseButton'
+import LogOut from '../../assets/png/LogOut.png'
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -43,9 +44,8 @@ const HomeScreen = () => {
                 <View style={styles.buttonWrapper}>
                     <BaseButton onPress={() => handleChangeScreen('Goals')} placeholder="Moje cele" />
                 </View>
-                {/* TODO: svg zamiast napisu logout */}
                 <TouchableOpacity onPress={handleLogOut}>
-                    <Text>Logout</Text>
+                    <Image source={LogOut} style={styles.logout} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -72,5 +72,9 @@ const styles = StyleSheet.create({
     buttonWrapper: {
         width: '80%',
         marginBottom: 30
+    },
+    logout: {
+        width: 25,
+        height: 27
     }
 });

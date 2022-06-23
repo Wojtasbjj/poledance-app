@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput } from 'react-native'
+import { StyleSheet, View, TextInput, Image } from 'react-native'
 
 class BaseInput extends React.Component {
     render() {
@@ -11,6 +11,10 @@ class BaseInput extends React.Component {
                     secureTextEntry={this.props.secureTextEntry}
                     style={styles.input}
                 />
+                <Image
+                    source={this.props.source}
+                    style={styles.icon}
+                />
             </View>
         )
     }
@@ -20,13 +24,20 @@ export default BaseInput
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%'
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid #D1D1D1',
+        borderRadius: 5,
+        marginTop: 5,
+        paddingVertical: 10,
     },
     input: {
-        border: '1px solid #D1D1D1',
-        paddingHorizontal: 15,
-        paddingVertical: 15,
-        borderRadius: 5,
-        marginTop: 5
+        height: 30
     },
+    icon: {
+        width: 30,
+        height: 30,
+    }
 });

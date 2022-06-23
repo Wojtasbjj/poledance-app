@@ -7,6 +7,8 @@ import * as Progress from 'react-native-progress';
 import { showMessage } from "react-native-flash-message";
 import BaseInput from '../atoms/BaseInput'
 import BaseButton from '../atoms/BaseButton'
+import EmailIcon from '../../assets/png/EmailIcon.png'
+import PasswordIcon from '../../assets/png/PasswordIcon.png'
 
 
 const LoginScreen = () => {
@@ -77,9 +79,8 @@ const LoginScreen = () => {
                     <Text style={[styles.descriptionText, styles.descriptionTextPurple]}>Pole Dancerek</Text>
                 </View>
                 <View style={styles.inputContainer}>
-                    {/* TODO: w Base input dodać możliwość dodawania ikonek i dodać ikonki z Figmy */}
-                    <BaseInput value={email} onChangeText={text => setEmail(text)} placeholder="E-mail" />
-                    <BaseInput value={password} onChangeText={text => setPassword(text)} placeholder="Hasło" secureTextEntry={true} />
+                    <BaseInput value={email} onChangeText={text => setEmail(text)} source={EmailIcon} placeholder="E-mail" />
+                    <BaseInput value={password} onChangeText={text => setPassword(text)} source={PasswordIcon} placeholder="Hasło" secureTextEntry={true} />
                 </View>
                 <View style={styles.buttonContainer}>
                     <BaseButton disabled={loader} onPress={handleSignIn} placeholder="ZALOGUJ SIĘ" />
