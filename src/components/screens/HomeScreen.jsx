@@ -4,12 +4,15 @@ import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 import firebase from '../../../firebase'
 import BaseButton from '../atoms/BaseButton'
 import LogOut from '../../assets/png/LogOut.png'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const HomeScreen = () => {
     const navigation = useNavigation()
+    const [user, loading, error] = useAuthState(firebase.auth())
 
 
     useEffect(() => {
+        console.log(user)
         const unsubscribe = firebase.auth().onAuthStateChanged(user => {
             if (!user) {
                 navigation.navigate("Login")
@@ -71,7 +74,8 @@ const styles = StyleSheet.create({
     },
     buttonWrapper: {
         width: '80%',
-        marginBottom: 30
+        marginBottom: 30,
+        alignItems: 'center'
     },
     logout: {
         width: 25,

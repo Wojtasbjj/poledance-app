@@ -20,11 +20,11 @@ export default BaseButton
 
 const styles = StyleSheet.create({
     button: {
-        width: '100%',
+        width: '80%',
         padding: 15,
         borderRadius: 5,
         alignItems: 'center',
-        marginBottom: '10px'
+        marginBottom: 30
     },
     buttonText: {
         color: 'white',
