@@ -8,17 +8,14 @@ import BaseInput from '../atoms/BaseInput'
 import BaseButton from '../atoms/BaseButton'
 import EmailIcon from '../../assets/png/EmailIcon.png'
 import PasswordIcon from '../../assets/png/PasswordIcon.png'
-import FacebookIcon from '../../assets/png/FaceBookIcon.png'
-import TwitterIcon from '../../assets/png/TwitterIcon.png'
-import GmailIcon from '../../assets/png/GmailIcon.png'
 import FemaleAvatar from '../../assets/png/FemaleAvatar.png'
 import BottomButton from '../atoms/BottomButton'
+import SocialMediaAuth from '../molecules/SocialMediaAuth'
 
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [displayName, setDisplayName] = useState('')
     const [user, loading, error] = useAuthState(firebase.auth())
     const [loader, setLoader] = useState(false)
 
@@ -67,22 +64,9 @@ const LoginScreen = () => {
                 <View style={styles.buttonContainer}>
                     <BaseButton disabled={loader} onPress={handleSignIn} placeholder="ZALOGUJ" />
                 </View>
-                <Text style={styles.text}>Zaloguj się przez portal społecznościowy:</Text>
-                <View style={styles.iconsContainer}>
-                    <Image
-                        source={FacebookIcon}
-                        style={styles.icon}
-                    />
-                    <Image
-                        source={TwitterIcon}
-                        style={styles.icon}
-                    />
-                    <Image
-                        source={GmailIcon}
-                        style={styles.icon}
-                    />
-                </View>
             </View>
+            <Text style={styles.text}>Zaloguj się przez portal społecznościowy:</Text>
+            <SocialMediaAuth />
             <BottomButton onPress={() => handleChangeScreen('Register')} text={'Nie jesteś zarejestrowany? Utwórz konto'}></BottomButton>
         </KeyboardAvoidingView>
     )
@@ -93,7 +77,7 @@ export default LoginScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         position: 'relative'
     },
@@ -118,14 +102,5 @@ const styles = StyleSheet.create({
     },
     text: {
         marginTop: 30
-    },
-    iconsContainer: {
-        flexDirection: 'row',
-        marginTop: 20
-    },
-    icon: {
-        width: 40,
-        height: 40,
-        marginHorizontal: 10
     }
 })

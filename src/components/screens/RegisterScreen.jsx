@@ -9,11 +9,9 @@ import BaseButton from '../atoms/BaseButton'
 import EmailIcon from '../../assets/png/EmailIcon.png'
 import PasswordIcon from '../../assets/png/PasswordIcon.png'
 import FemaleAvatarRegister from '../../assets/png/FemaleAvatarRegister.png'
-import FacebookIcon from '../../assets/png/FaceBookIcon.png'
-import TwitterIcon from '../../assets/png/TwitterIcon.png'
-import GmailIcon from '../../assets/png/GmailIcon.png'
 import UserIcon from '../../assets/png/UserIcon.png'
 import BottomButton from '../atoms/BottomButton'
+import SocialMediaAuth from '../molecules/SocialMediaAuth'
 
 
 const RegisterScreen = () => {
@@ -79,20 +77,7 @@ const RegisterScreen = () => {
             </View>
             <Text style={styles.text}>Lub</Text>
             <Text style={styles.text}>Zarejestruj się za pomocą: </Text>
-            <View style={styles.iconsContainer}>
-                <Image
-                    source={FacebookIcon}
-                    style={styles.icon}
-                />
-                <Image
-                    source={TwitterIcon}
-                    style={styles.icon}
-                />
-                <Image
-                    source={GmailIcon}
-                    style={styles.icon}
-                />
-            </View>
+            <SocialMediaAuth />
             <BottomButton text="Masz już konto? Zaloguj się" onPress={() => handleChangeScreen('Login')}></BottomButton>
         </KeyboardAvoidingView>
     )
@@ -103,7 +88,7 @@ export default RegisterScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         position: 'relative'
     },
@@ -125,23 +110,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 40
-    },
-    iconsContainer: {
-        flexDirection: 'row',
-        marginTop: 20
-    },
-    icon: {
-        width: 40,
-        height: 40,
-        marginHorizontal: 10
-    },
-    registerCta: {
-        position: "absolute",
-        bottom: 0,
-        width: '100%',
-        height: 55,
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     text: {
         marginTop: 10

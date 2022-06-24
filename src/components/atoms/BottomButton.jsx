@@ -18,9 +18,8 @@ export default BottomButton
 
 const styles = StyleSheet.create({
     registerCta: {
-        position: "absolute",
-        bottom: 0,
         width: '100%',
+        marginTop: 10
     },
     button: {
         width: '100%',
