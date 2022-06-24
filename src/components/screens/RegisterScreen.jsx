@@ -19,7 +19,7 @@ import BottomButton from '../atoms/BottomButton'
 const RegisterScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [RePassword, setRePassword] = useState('')
+    const [rePassword, setRePassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const [user, loading, error] = useAuthState(firebase.auth())
     const [loader, setLoader] = useState(false)
@@ -71,7 +71,7 @@ const RegisterScreen = () => {
                     <BaseInput value={displayName} onChangeText={text => setDisplayName(text)} source={UserIcon} placeholder="Twoje imię" />
                     <BaseInput value={email} onChangeText={text => setEmail(text)} source={EmailIcon} placeholder="E-mail" />
                     <BaseInput value={password} onChangeText={text => setPassword(text)} source={PasswordIcon} placeholder="Hasło" secureTextEntry={true} />
-                    <BaseInput value={password} onChangeText={text => setRePassword(text)} source={PasswordIcon} placeholder="Potwierdź hasło" secureTextEntry={true} />
+                    <BaseInput value={rePassword} onChangeText={text => setRePassword(text)} source={PasswordIcon} placeholder="Potwierdź hasło" secureTextEntry={true} />
                 </View>
                 <View style={styles.buttonContainer}>
                     <BaseButton disabled={loader} onPress={() => handleSignUp("Login")} placeholder="ZAŁÓŻ PROFIL" />

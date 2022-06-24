@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 import firebase from '../../../firebase'
@@ -9,10 +9,10 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 const HomeScreen = () => {
     const navigation = useNavigation()
     const [user, loading, error] = useAuthState(firebase.auth())
+    const [name, setName] = useState('')
 
 
     useEffect(() => {
-        console.log(user)
         const unsubscribe = firebase.auth().onAuthStateChanged(user => {
             if (!user) {
                 navigation.navigate("Login")
@@ -22,6 +22,11 @@ const HomeScreen = () => {
         return unsubscribe
     }, [])
 
+    useEffect(() => {
+        if (user) {
+            setName(user.displayName)
+        }
+    }, [user])
 
     const handleChangeScreen = (screen) => {
         navigation.navigate(screen)
@@ -34,7 +39,10 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
-                <View style={styles.avatar}></View>
+                <View style={styles.avatar}>
+                    <Text style={styles.add}>+</Text>
+                </View>
+                <Text style={styles.name}>{name}</Text>
             </View>
             <View style={styles.menuContainer}>
                 <View style={styles.buttonWrapper}>
@@ -67,7 +75,28 @@ const styles = StyleSheet.create({
         flex: 1,
         borderBottomColor: '#D1D1D1',
         borderBottomWidth: 1,
-        marginBottom: '10px'
+        marginBottom: '10px',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    avatar: {
+        width: 80,
+        height: 80,
+        backgroundColor: '#C4C4C4',
+        borderRadius: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    add: {
+        color: 'white',
+        fontSize: 28
+    },
+    name: {
+        marginTop: 10,
+        color: '#9247b1',
+        fontSize: 22,
+        fontWeight: 700
+
     },
     menuContainer: {
         flex: 2,
