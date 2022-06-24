@@ -33,7 +33,9 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.profileContainer}></View>
+            <View style={styles.profileContainer}>
+                <View style={styles.avatar}></View>
+            </View>
             <View style={styles.menuContainer}>
                 <View style={styles.buttonWrapper}>
                     <BaseButton onPress={() => handleChangeScreen('Profile')} placeholder="Mój Profil" />

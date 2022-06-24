@@ -1,9 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, KeyboardAvoidingView, Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, Text, View, Image } from 'react-native'
 import firebase from '../../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import * as Progress from 'react-native-progress';
 import { showMessage } from "react-native-flash-message";
 import BaseInput from '../atoms/BaseInput'
 import BaseButton from '../atoms/BaseButton'
@@ -13,7 +12,7 @@ import FacebookIcon from '../../assets/png/FaceBookIcon.png'
 import TwitterIcon from '../../assets/png/TwitterIcon.png'
 import GmailIcon from '../../assets/png/GmailIcon.png'
 import FemaleAvatar from '../../assets/png/FemaleAvatar.png'
-import { LinearGradient } from 'expo-linear-gradient';
+import BottomButton from '../atoms/BottomButton'
 
 
 const LoginScreen = () => {
@@ -84,11 +83,7 @@ const LoginScreen = () => {
                     />
                 </View>
             </View>
-            <LinearGradient colors={['#FD749B', '#281AC8']} style={styles.registerCta}>
-                <TouchableOpacity onPress={() => handleChangeScreen('Register')}>
-                    <Text style={styles.textWhite}>Nie jesteś zarejestrowany? Utwórz konto</Text>
-                </TouchableOpacity>
-            </LinearGradient>
+            <BottomButton onPress={() => handleChangeScreen('Register')} text={'Nie jesteś zarejestrowany? Utwórz konto'}></BottomButton>
         </KeyboardAvoidingView>
     )
 }
@@ -107,18 +102,6 @@ const styles = StyleSheet.create({
         height: 150,
         marginBottom: 40
     },
-    descriptionContainer: {
-        textAlign: 'center',
-        marginBottom: 20
-    },
-    descriptionText: {
-        color: '#c95ea6',
-        fontSize: '24px',
-        fontWeight: 700
-    },
-    descriptionTextPurple: {
-        color: '#9247b1'
-    },
     formWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -133,19 +116,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 40
     },
-    registerCta: {
-        position: "absolute",
-        bottom: 0,
-        width: '100%',
-        height: 55,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     text: {
         marginTop: 30
-    },
-    textWhite: {
-        color: 'white'
     },
     iconsContainer: {
         flexDirection: 'row',

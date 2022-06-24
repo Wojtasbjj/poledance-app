@@ -5,10 +5,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 class BaseButton extends React.Component {
     render() {
         return (
-            <LinearGradient colors={['#FD749B', '#281AC8']} style={styles.button}>
+            <LinearGradient colors={['#FD749B', '#281AC8']} style={styles.wrapper}>
                 <TouchableOpacity
                     disabled={this.props.disabled}
-                    onPress={this.props.onPress}>
+                    onPress={this.props.onPress}
+                    style={styles.button}
+                >
                     <Text style={styles.buttonText}>{this.props.placeholder}</Text>
                 </TouchableOpacity>
             </LinearGradient >
@@ -19,12 +21,14 @@ class BaseButton extends React.Component {
 export default BaseButton
 
 const styles = StyleSheet.create({
-    button: {
+    wrapper: {
         width: '80%',
-        padding: 15,
+        marginBottom: 30,
         borderRadius: 5,
+    },
+    button: {
         alignItems: 'center',
-        marginBottom: 30
+        margin: 15
     },
     buttonText: {
         color: 'white',

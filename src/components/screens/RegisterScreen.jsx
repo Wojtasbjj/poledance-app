@@ -1,9 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, KeyboardAvoidingView, View, Image, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, View, Image, Text } from 'react-native'
 import firebase from '../../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import * as Progress from 'react-native-progress';
 import { showMessage } from "react-native-flash-message";
 import BaseInput from '../atoms/BaseInput'
 import BaseButton from '../atoms/BaseButton'
@@ -13,8 +12,8 @@ import FemaleAvatarRegister from '../../assets/png/FemaleAvatarRegister.png'
 import FacebookIcon from '../../assets/png/FaceBookIcon.png'
 import TwitterIcon from '../../assets/png/TwitterIcon.png'
 import GmailIcon from '../../assets/png/GmailIcon.png'
-import { LinearGradient } from 'expo-linear-gradient';
 import UserIcon from '../../assets/png/UserIcon.png'
+import BottomButton from '../atoms/BottomButton'
 
 
 const RegisterScreen = () => {
@@ -94,11 +93,7 @@ const RegisterScreen = () => {
                     style={styles.icon}
                 />
             </View>
-            <LinearGradient colors={['#FD749B', '#281AC8']} style={styles.registerCta}>
-                <TouchableOpacity onPress={() => handleChangeScreen('Login')}>
-                    <Text style={styles.textWhite}>Masz już konto? Zaloguj się</Text>
-                </TouchableOpacity>
-            </LinearGradient>
+            <BottomButton text="Masz już konto? Zaloguj się" onPress={() => handleChangeScreen('Login')}></BottomButton>
         </KeyboardAvoidingView>
     )
 }
@@ -116,18 +111,6 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         marginBottom: 40
-    },
-    descriptionContainer: {
-        textAlign: 'center',
-        marginBottom: 20
-    },
-    descriptionText: {
-        color: '#c95ea6',
-        fontSize: '24px',
-        fontWeight: 700
-    },
-    descriptionTextPurple: {
-        color: '#9247b1'
     },
     formWrapper: {
         justifyContent: 'center',
@@ -162,8 +145,5 @@ const styles = StyleSheet.create({
     },
     text: {
         marginTop: 10
-    },
-    textWhite: {
-        color: 'white'
     },
 })
